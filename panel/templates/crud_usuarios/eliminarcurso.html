@@ -1,0 +1,38 @@
+{% extends '../index_master.html' %}
+
+{% block content %}
+
+<div class="right_col" role="main">
+    <h1>Eliminar Curso</h1>
+
+    <form action="{% url 'eliminarcurso' idcurso=curso.idcurso %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group row">
+            <label for="idcurso" class="col-4 col-form-label">ID Curso</label> 
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-id-badge"></i>
+                    </div> 
+
+                    <select id="idcurso" name="idcurso" class="form-control">
+                        {% for curso in cursos %}
+                            <option value="{{ curso.idcurso }}">{{ curso.idcurso }} - {{ curso.nombre }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                <button name="submit" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar Curso</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}
